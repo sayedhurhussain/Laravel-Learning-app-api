@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    //Sing up
     public function index(Request $request) {
         return User::all();
     }
@@ -28,6 +29,7 @@ class UserController extends Controller
         // $token = $user-> createToken('myapptocken')->plainTextToken;
 
         $response = [
+            'error' => false,
             'user' => $user,
             // 'token' => $token
         ];
@@ -46,24 +48,31 @@ class UserController extends Controller
         //check Login password
         if(!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
+                'error' => true,
                 'message' => 'Incorrect Password'
             ], 401);
         }
         $token = $user-> createToken('myapptocken')->plainTextToken;
         $response = [
+            'error' => false,
             'user' => $user,
             'token' => $token
         ];
         return response ($response, 201);
+        
     }
 
     //logout API
     public function logout(Request $request)
     {
+        $user =User::findOrFail($id);
+        (auth()->user()->email == $user->email);
         auth()->user()->tokens()->delete();
 
-        return [
+        $response =[
+            'error' => false,
             'message' => 'Logged out'
         ];
+        return response ($response, 200);
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,9 @@ use App\Http\Controllers\AuthController;
 
 // Public Route/API
 // Regiseration/ Signup Route
-Route::post('/register', [UserController::class, 'register']);
+Route::post('signup', [UserController::class, 'register']);
+// Regiseration/ Signup Route
+Route::post('/create', [UserDetailController::class, 'store']);
 // Login Route/API
 Route::post('/user/login', [UserController::class, 'login']);
 // Send Forgot Password Link to Mail API
@@ -42,6 +45,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 Route::get('/index', [UserController::class, 'index']);
 
 Route::get('/getAuthenticatedUser', [AuthController::class, 'getAuthenticatedUser']);
+
 // Route::post('/register', function(){  
 //     return User::create([
 //         'name'=>'sayed',

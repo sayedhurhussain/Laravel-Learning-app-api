@@ -17,8 +17,6 @@ use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
 
 
-
-
 class AuthController extends Controller
 {
     //Change/Update Password

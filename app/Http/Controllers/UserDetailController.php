@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\UserDetail;
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -43,23 +44,24 @@ class UserDetailController extends Controller
         // picure means file name and 
         // image means folder name where save all the picture
         // public means the storage is public and save the image in public folder
-
-        // $path = $request->file('picture')->store('image', 'public');
-        // $data = [
-        //     'phone_no' => $request->phone_number,
-        //     'about' => $request->about,
-        //     'address' => $request->address,
-        //     'postal_code' => $request->postal_code,
-        //     'whatsapp' => $request->whatsapp,
-        //     'facebook' => $request->facebook,
-        //     'twitter' => $request->twitter,
-        //     'instagram' => $request->instagram,
-        //     'linkedin' => $request->linkedin,
-        //     'github' => $request->github,
-        //     'picture' =>  $path,
-        // ];
-        // $user = UserDetail::create($data);
-        // return $user;
+        // return $userDetails;
+        $path = $request->file('picture')->store('image', 'public');
+        $data = [
+            'phone_no' => $request->phone_number,
+            'about' => $request->about,
+            'address' => $request->address,
+            'postal_code' => $request->postal_code,
+            'whatsapp' => $request->whatsapp,
+            'facebook' => $request->facebook,
+            'twitter' => $request->twitter,
+            'instagram' => $request->instagram,
+            'linkedin' => $request->linkedin,
+            'github' => $request->github,
+            'picture' =>  $path,
+            "user_id" => auth()->user()->id
+        ];
+        $user = UserDetail::create($data);
+        return $user;
     
 
         // 2nd method to save the picture in array
@@ -84,28 +86,28 @@ class UserDetailController extends Controller
         // return $user;
 
 
-        // 3rd Method Create Data
-        $images= new UserDetail();
-        $filename="";
-        // profile picture means in input i.e insomnia
-        if ($request->hasFile('profile_picture')) {
-            $filename = $request->file('profile_picture')->store('profile', 'public');
-            //change the name in database
-            $request->merge(["picture"=>$filename]);
-            }
-        $images->phone_no = $request->phone_number;
-        $images->about = $request->about;
-        $images->address = $request->address;
-        $images->postal_code = $request->postal_code;
-        $images->whatsapp = $request->whatsapp;
-        $images->facebook = $request->facebook;
-        $images->twitter = $request->twitter;
-        $images->instagram = $request->instagram;
-        $images->linkedin = $request->linkedin;
-        $images->github = $request->github;
-        $images->picture = $filename;
-        $images->save();
-        return $images;
+        // // 3rd Method Create Data
+        // $images= new UserDetail();
+        // $filename="";
+        // // profile picture means in input i.e insomnia
+        // if ($request->hasFile('profile_picture')) {
+        //     $filename = $request->file('profile_picture')->store('profile', 'public');
+        //     //change the name in database
+        //     $request->merge(["picture"=>$filename]);
+        //     }
+        // $images->phone_no = $request->phone_number;
+        // $images->about = $request->about;
+        // $images->address = $request->address;
+        // $images->postal_code = $request->postal_code;
+        // $images->whatsapp = $request->whatsapp;
+        // $images->facebook = $request->facebook;
+        // $images->twitter = $request->twitter;
+        // $images->instagram = $request->instagram;
+        // $images->linkedin = $request->linkedin;
+        // $images->github = $request->github;
+        // $images->picture = $filename;
+        // $images->save();
+        // return $images;
 
 
         // // 4th Method Create Data

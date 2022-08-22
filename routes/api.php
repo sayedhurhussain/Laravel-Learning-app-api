@@ -25,19 +25,6 @@ use App\Http\Controllers\UserDetailController;
 // Public Route/API
 // Regiseration/ Signup Route
 Route::post('signup', [UserController::class, 'register']);
-// Create/Store user Details
-Route::post('/create', [UserDetailController::class, 'store']);
-// Update/Edit user Details
-Route::put('/update/{id}', [UserDetailController::class, 'update']);
-// Index/get all user Details
-Route::get('/userDetail/index', [UserDetailController::class, 'index']);
-// Index/get all user Details
-Route::get('/userDetailById/{id}', [UserDetailController::class, 'show']);
-// Index/get all user Details
-Route::delete('/userDetailDelete/{id}', [UserDetailController::class, 'destroy']);
-
-// // Index/get all user Details
-// Route::get('/userDetail/index/{id}', [UserDetailController::class, 'index']);
 // Login Route/API
 Route::post('/user/login', [UserController::class, 'login']);
 // Send Forgot Password Link to Mail API
@@ -51,6 +38,16 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('changePassword', [AuthController::class, 'changePassword'])->name('change.password');
     // Logout Route
     Route::post('/user/logout', [UserController::class, 'logout']);
+        // Create/Store user Details
+    Route::post('/create', [UserDetailController::class, 'store']);
+    // Update/Edit user Details
+    Route::put('/update/{id}', [UserDetailController::class, 'update']);
+    // Index/get all user Details
+    Route::get('/userDetail/index', [UserDetailController::class, 'index']);
+    // Index/get all user Details
+    Route::get('/userDetailById/{id}', [UserDetailController::class, 'show']);
+    // Index/get all user Details
+    Route::delete('/userDetailDelete/{id}', [UserDetailController::class, 'destroy']);
 });
 
 Route::get('/index', [UserController::class, 'index']);

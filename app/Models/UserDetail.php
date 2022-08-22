@@ -17,6 +17,7 @@ class UserDetail extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_id',
         'phone_no',
         'about',
         'address',
@@ -48,4 +49,9 @@ class UserDetail extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

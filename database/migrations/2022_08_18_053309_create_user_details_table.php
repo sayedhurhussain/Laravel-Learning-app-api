@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
-            $table->string('phone_no')->nullable();;
+            $table->foreignId("user_id");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
+            $table->string('phone_no')->nullable();
             $table->string('about')->nullable();
-            $table->string('address')->nullable();;
+            $table->string('address')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('picture')->nullable();
             $table->string('whatsapp')->nullable();

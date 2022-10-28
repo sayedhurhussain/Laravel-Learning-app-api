@@ -20,14 +20,14 @@ class UserDetailController extends Controller
      */
     public function index()
     {
-        // 1st Method to index / get all data
+        // ^ 1st Method to index / get all data
         return UserDetail::all();
 
-        // // 2nd Method to index / get all data
+        // ! 2nd Method to index / get all data
         // $userDetails = UserDetail::all();
         // return $userDetails;
 
-        // // 3rd Method to index  / get all data with pagination
+        // & 3rd Method to index  / get all data with pagination
         // $userDetails = UserDetail::paginate(10);
         // return $userDetails;
     }
@@ -40,7 +40,7 @@ class UserDetailController extends Controller
      */
     public function store(Request $request)
     {
-        // 1st method to save the picture in array
+        // TODO 1st method to save the picture in array
         // picure means file name and 
         // image means folder name where save all the picture
         // public means the storage is public and save the image in public folder
@@ -64,7 +64,7 @@ class UserDetailController extends Controller
         return $user;
     
 
-        // 2nd method to save the picture in array
+        // ~ 2nd method to save the picture in array
         // $data = [
         //     'phone_no' => $request->phone_number,
         //     'about' => $request->about,
@@ -86,7 +86,7 @@ class UserDetailController extends Controller
         // return $user;
 
 
-        // // 3rd Method Create Data
+        // ?3rd Method Create Data
         // $images= new UserDetail();
         // $filename="";
         // // profile picture means in input i.e insomnia
@@ -110,7 +110,7 @@ class UserDetailController extends Controller
         // return $images;
 
 
-        // // 4th Method Create Data
+        // * 4th Method Create Data
         // $images= new UserDetail();
         // $filename="";
         // // // profile picture means in input i.e insomnia
@@ -134,7 +134,7 @@ class UserDetailController extends Controller
         // return response()->json($images, 202);
 
 
-        // 5th Method Create All Data
+        // ^ 5th Method Create All Data
         // $images= new UserDetail();
         // $filename="";
         // if ($request->hasFile('profile_picture')) {
@@ -146,7 +146,7 @@ class UserDetailController extends Controller
         // return $user;
 
 
-        // // 6th method to create data
+        // & 6th method to create data
         // $path = $request->file('picture')->store('image', 'public');
         // $user= UserDetail::create($request->all());
         // $response = [
@@ -178,7 +178,7 @@ class UserDetailController extends Controller
     public function update(Request $request, $id)
     {
         // // 1st method to update data
-        // picure means file name and 
+        // picture means file name and 
         // image means folder name where save all the picture
         // public means the storage is public and save the image in public folder
 

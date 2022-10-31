@@ -23,7 +23,7 @@ use App\Http\Controllers\UserDetailController;
 // });
 
 // Public Route/API
-// Regiseration/ Signup Route
+// Registration/ Signup Route
 Route::post('signup', [UserController::class, 'register']);
 // Login Route/API
 Route::post('/user/login', [UserController::class, 'login']);

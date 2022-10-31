@@ -41,7 +41,7 @@ class UserDetailController extends Controller
     public function store(Request $request)
     {
         // TODO 1st method to save the picture in array
-        // picure means file name and 
+        // picture means file name and 
         // image means folder name where save all the picture
         // public means the storage is public and save the image in public folder
         // return $userDetails;
@@ -86,13 +86,13 @@ class UserDetailController extends Controller
         // return $user;
 
 
-        // ?3rd Method Create Data
+        // ? 3rd Method Create Data
         // $images= new UserDetail();
         // $filename="";
-        // // profile picture means in input i.e insomnia
+            // profile picture means in input i.e insomnia
         // if ($request->hasFile('profile_picture')) {
         //     $filename = $request->file('profile_picture')->store('profile', 'public');
-        //     //change the name in database
+            //change the name in database
         //     $request->merge(["picture"=>$filename]);
         //     }
         // $images->phone_no = $request->phone_number;
@@ -113,10 +113,10 @@ class UserDetailController extends Controller
         // * 4th Method Create Data
         // $images= new UserDetail();
         // $filename="";
-        // // // profile picture means in input i.e insomnia
+            // profile picture means in input i.e insomnia
         // if ($request->hasFile('profile_picture')) {
         //     $filename = $request->file('profile_picture')->store('profile', 'public');
-        //     //change the name in database
+              // change the name in database
         //     $request->merge(["picture"=>$filename]);
         //     }
         // $images->phone_no = $request->input('phone_number');
@@ -177,12 +177,12 @@ class UserDetailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // // 1st method to update data
+        // ^ 1st method to update data
         // picture means file name and 
         // image means folder name where save all the picture
         // public means the storage is public and save the image in public folder
 
-        // $updatedetails = UserDetail::findOrFail($id);
+        // $updateDetails = UserDetail::findOrFail($id);
         // $path = $request->file('picture')->store('image', 'public');
         // $data = [
         //     'phone_no' => $request->phone_number,
@@ -197,12 +197,12 @@ class UserDetailController extends Controller
         //     'github' => $request->github,
         //     'picture' =>  $path,
         // ];
-        // $updatedetails->update($data);
+        // $updateDetails->update($data);
         // return $data;
 
 
-        // // 2nd method to update data
-        // $updatedetails = UserDetail::findOrFail($id);
+        // & 2nd method to update data
+        // $updateDetails = UserDetail::findOrFail($id);
         // $data = [
         //     'phone_no' => $request->phone_number,
         //     'about' => $request->about,
@@ -220,16 +220,16 @@ class UserDetailController extends Controller
         //     $path = request()->file('picture')->store("avatars", "public");
         //     $data["picture"] = $path;
         // }
-        // $updatedetails->update($data);
+        // $updateDetails->update($data);
         // return $data;
 
 
-        // // 3rd Method Create Data
+        // * 3rd Method Create Data
         // $images = UserDetail::findOrFail($id);
-        // // profile picture means in input i.e insomnia
+            //  profile picture means in input i.e insomnia
         // if ($request->hasFile('profile_picture')) {
         //     $filename = $request->file('profile_picture')->store('profile', 'public');
-        //     //change the name in database
+            //change the name in database
         //     $request->merge(["picture"=>$filename]);
         //     }
         // $images->phone_no = $request->phone_number;
@@ -243,18 +243,18 @@ class UserDetailController extends Controller
         // $images->linkedin = $request->linkedin;
         // $images->github = $request->github;
         // $images->picture = $filename;
-        // // $images->save();
+            // $images->save(); // not required
         // $images->update();
         // return $images;
 
 
 
-        // 4th Method Update Data
+        // TODO 4th Method Update Data
         $images = UserDetail::findOrFail($id);
-        // // profile picture means in input i.e insomnia
+            // profile picture means in input i.e insomnia
         if ($request->hasFile('profile_picture')) {
             $filename = $request->file('profile_picture')->store('profile', 'public');
-            //change the name in database
+                //change the name in database
             $request->merge(["picture"=>$filename]);
             }
         $images->phone_no = $request->input('phone_number');
@@ -273,7 +273,7 @@ class UserDetailController extends Controller
         return response()->json($images, 202);
 
 
-        // // 5th Method Update All Data
+        // ~ 5th Method Update All Data
         // $images = UserDetail::findOrFail($id);
         // if ($request->hasFile('profile_picture')) {
         //     $path = $request->file('profile_picture')->store('profile', 'public');
@@ -283,10 +283,10 @@ class UserDetailController extends Controller
         // return $images;
 
 
-        // // 6th Method to update data
+        // & 6th Method to update data
         // $images = UserDetail::findOrFail($id);
         // $path = $request->file('picture')->store('image', 'public');
-        // // $user= UserDetail::create($request->all());
+            // $user= UserDetail::create($request->all()); // not required
         // $images->update($request->all());
         // $response = [
         //     'user' => $images,

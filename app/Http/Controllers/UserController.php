@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    //Sing up
+    // & Sing up
     public function index(Request $request) {
         return User::all();
     }
@@ -36,7 +36,7 @@ class UserController extends Controller
         return response ($response, 201);
     }
 
-    //Login API
+    // & Login API
     public function login(Request $request)
     {
         $fields = $request->validate([
@@ -62,7 +62,7 @@ class UserController extends Controller
         
     }
 
-    //logout API
+    // & logout API
     public function logout(Request $request)
     {
         $user =User::findOrFail($id);

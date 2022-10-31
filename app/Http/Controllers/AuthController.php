@@ -19,7 +19,7 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class AuthController extends Controller
 {
-    //Change/Update Password
+    // ~ Change/Update Password
     public function changePassword(Request $request)
     {
         $request->validate([
@@ -32,7 +32,7 @@ class AuthController extends Controller
         return response(['message'=>'Password change successfully: Logout from all the devices']);
     }
     
-    //Send forgot password email
+    // ~ Send forgot password email
 	public function sendPasswordResetLinkEmail(Request $request) {
 		$request->validate(['email' => 'required|email']);
     
@@ -50,7 +50,7 @@ class AuthController extends Controller
         
     	}
 
-    //Reset password
+    // ~ Reset password
     public function resetPassword(Request $request)
     {
         $request->validate([

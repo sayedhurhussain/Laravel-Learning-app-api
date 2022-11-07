@@ -34,11 +34,13 @@ Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('
 
 // protected Route
 Route::group(['middleware' => ['auth:sanctum']], function() {
+    // Get Authenticated User
+    Route::get('/getAuthUser', [AuthController::class, 'getAuthenticatedUser']);
     // Change/Update Password
-    Route::post('changePassword', [AuthController::class, 'changePassword'])->name('change.password');
+    Route::post('/password/change', [AuthController::class, 'changePassword'])->name('change.password');
     // Logout Route
     Route::post('/user/logout', [UserController::class, 'logout']);
-        // Create/Store user Details
+    // Create/Store user Details
     Route::post('/create', [UserDetailController::class, 'store']);
     // Update/Edit user Details
     Route::put('/update/{id}', [UserDetailController::class, 'update']);
@@ -48,11 +50,13 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/userDetailById/{id}', [UserDetailController::class, 'show']);
     // Index/get all user Details
     Route::delete('/userDetailDelete/{id}', [UserDetailController::class, 'destroy']);
+
+
 });
 
 Route::get('/index', [UserController::class, 'index']);
 
-Route::get('/getAuthenticatedUser', [AuthController::class, 'getAuthenticatedUser']);
+
 
 // Route::post('/register', function(){  
 //     return User::create([

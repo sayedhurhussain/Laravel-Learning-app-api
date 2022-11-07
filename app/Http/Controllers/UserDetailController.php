@@ -10,6 +10,10 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use DB;
+
+// use Illuminate\Database\Eloquent\Collection;
+
 
 class UserDetailController extends Controller
 {
@@ -21,7 +25,7 @@ class UserDetailController extends Controller
     public function index()
     {
         // ^ 1st Method to index / get all data
-        return UserDetail::all();
+        // return UserDetail::all();
 
         // ! 2nd Method to index / get all data
         // $userDetails = UserDetail::all();
@@ -30,6 +34,13 @@ class UserDetailController extends Controller
         // & 3rd Method to index  / get all data with pagination
         // $userDetails = UserDetail::paginate(10);
         // return $userDetails;
+
+        // ~ 4th Method get specific data
+        // return $user = DB::select('select about, facebook from user_details');
+
+        // TODO 5th Method get specific data
+        // return $user = UserDetail::all('id', 'user_id', 'about', 'whatsapp', 'twitter', 'facebook');
+        
     }
 
     /**

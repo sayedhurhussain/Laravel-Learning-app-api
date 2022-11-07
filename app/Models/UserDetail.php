@@ -11,6 +11,8 @@ class UserDetail extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'user_details';
+
     /**
      * The attributes that are mass assignable.
      *

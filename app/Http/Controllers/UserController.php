@@ -10,10 +10,30 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // & Sing up
+    /**
+    | --------------------------------------------------------------------------
+    | Display all users Controller
+    | --------------------------------------------------------------------------
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request) {
         return User::all();
     }
+
+    /**
+    | --------------------------------------------------------------------------
+    | Register Controller
+    | --------------------------------------------------------------------------
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     *
+     * @desc    Register new user as well as their validation
+     * @route   POST /signup
+     * @access  public
+     */
     public function register(Request $request) {
         $fields = $request->validate([
             'name'=>'required|string',
@@ -36,7 +56,18 @@ class UserController extends Controller
         return response ($response, 201);
     }
 
-    // & Login API
+    /**
+    | --------------------------------------------------------------------------
+    | Login Controller
+    | --------------------------------------------------------------------------
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     *
+     * @desc    Login User
+     * @route   POST /user/login
+     * @access  public
+     */
     public function login(Request $request)
     {
         $fields = $request->validate([
@@ -49,7 +80,7 @@ class UserController extends Controller
         if(!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
                 'error' => true,
-                'message' => 'Incorrect Password'
+                'message' => 'The provided credentials are incorrect'
             ], 401);
         }
         $token = $user-> createToken('myapptocken')->plainTextToken;
@@ -62,12 +93,23 @@ class UserController extends Controller
         
     }
 
-    // & logout API
+    /**
+    | --------------------------------------------------------------------------
+    | Logout Controller
+    | --------------------------------------------------------------------------
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     *
+     * @route   POST /user/logout
+     * @access  private
+     */
     public function logout(Request $request)
     {
-        $user =User::findOrFail($id);
-        (auth()->user()->email == $user->email);
-        auth()->user()->tokens()->delete();
+		// Revoke the token that was used to authenticate the current request
+		// auth()->user()->currentAccessToken()->delete();
+        // use this to revoke all tokens (logout from all devices)
+		auth()->user()->tokens()->delete();
 
         $response =[
             'error' => false,

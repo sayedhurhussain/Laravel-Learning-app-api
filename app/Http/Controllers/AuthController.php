@@ -19,7 +19,18 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class AuthController extends Controller
 {
-    // ~ Change/Update Password
+    /**
+    | --------------------------------------------------------------------------
+    | Change/Update Password Controller
+    | --------------------------------------------------------------------------
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     *
+     * @desc    Change the user password
+     * @route   POST /password/change
+     * @access  private
+     */
     public function changePassword(Request $request)
     {
         $request->validate([
@@ -31,15 +42,26 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
         return response(['message'=>'Password change successfully: Logout from all the devices']);
     }
-    
-    // ~ Send forgot password email
+
+    /**
+    | --------------------------------------------------------------------------
+    | Send password reset link Controller
+    | --------------------------------------------------------------------------
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     *
+     * @desc    Send forgot password email link
+     * @route   POST /password/email
+     * @access  public
+     */
 	public function sendPasswordResetLinkEmail(Request $request) {
 		$request->validate(['email' => 'required|email']);
     
 		$status = Password::sendResetLink(
 			$request->only('email')
 		);
-        // dd($request);
+
 		if($status === Password::RESET_LINK_SENT) {
 			return response()->json(['message' => __($status)], 200);
 		} else {
@@ -47,10 +69,20 @@ class AuthController extends Controller
 				'email' => __($status)
 			]);
 		}
-        
-    	}
+    }
 
-    // ~ Reset password
+    /**
+    | --------------------------------------------------------------------------
+    | Reset password Controller
+    | --------------------------------------------------------------------------
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     *
+     * @desc    Reset password
+     * @route   POST /password/reset
+     * @access  public
+     */
     public function resetPassword(Request $request)
     {
         $request->validate([
@@ -78,12 +110,21 @@ class AuthController extends Controller
         }
     }
 
-    /*
-	 * Get authenticated user details
-	*/
+    /**
+    | --------------------------------------------------------------------------
+    | Get Authenticated User Controller
+    | --------------------------------------------------------------------------
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     *
+     * @desc    Get authenticated user details
+     * @route   POST /getAuthUser
+     * @access  private
+     */
 	public function getAuthenticatedUser(Request $request) {
-		// return $request->user();
-        return User::all();
+		return $request->user();
+        // return User::all();
         // dd($request);
 	}
  

@@ -35,10 +35,13 @@ class UserDetailController extends Controller
         // $userDetails = UserDetail::paginate(10);
         // return $userDetails;
 
-        // ~ 4th Method get specific data
+        // TODO 4th Method get specific data
         // return $user = DB::select('select about, facebook from user_details');
-
-        // TODO 5th Method get specific data
+        
+        // TODO: 6th Method get specific data
+        return $user = UserDetail::select('id', 'user_id', 'about', 'whatsapp')->get();
+        
+        // ~ 6th Method get specific data
         // return $user = UserDetail::all('id', 'user_id', 'about', 'whatsapp', 'twitter', 'facebook');
         
     }
@@ -178,6 +181,7 @@ class UserDetailController extends Controller
     {
         return UserDetail::findOrFail($id);
     }
+
 
     /**
      * Update the specified resource in storage.

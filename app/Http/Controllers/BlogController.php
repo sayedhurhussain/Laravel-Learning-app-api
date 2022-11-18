@@ -14,7 +14,15 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+
+        // Laravel Eloquent Vs DB Query Builder
+        // Query Builder
+        $blogs = DB::table('blogs')->get();
+        return $blogs;
+
+        // Eloquent ORM
+        $blogs = Blog::all();
+        return $blogs;
     }
 
     /**
@@ -35,7 +43,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Blog::create($request->all());
     }
 
     /**
@@ -46,7 +54,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        return Blog::find($id);
     }
 
     /**
@@ -69,7 +77,9 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $blog = Blog::find($id);
+        $blog->update($request->all());
+        return $blog;
     }
 
     /**
@@ -80,6 +90,6 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+        return Product::destroy($id);
     }
 }

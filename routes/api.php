@@ -3,8 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDetailController;
 
 /*
@@ -53,6 +54,19 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 
 });
+
+Route::prefix('blog')->group(function () {
+    Route::post('/create', [BlogController::class, 'store']);
+    // Update/Edit user Details
+    Route::put('/update/{id}', [BlogController::class, 'update']);
+    // Index/get all user Details
+    Route::get('/index', [BlogController::class, 'index']);
+    // Index/get all user Details
+    Route::get('/show/{id}', [BlogController::class, 'show']);
+    // Index/get all user Details
+    Route::delete('/delete/{id}', [BlogController::class, 'destroy']);
+});
+
 
 Route::get('/index', [UserController::class, 'index']);
 

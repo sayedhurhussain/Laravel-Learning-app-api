@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use DB;
+use Illuminate\Database\QueryException;
 
 class BlogController extends Controller
 {
@@ -20,9 +22,26 @@ class BlogController extends Controller
         $blogs = DB::table('blogs')->get();
         return $blogs;
 
+        // Get only one Table/Column Query Builder
+        // $blogs = DB::table('blogs')->get('blog_name');
+        // return $blogs;
+
+        // Get only first row in the table
+        // $blogs = DB::table('blogs')->first();
+        // return $blogs;
+
         // Eloquent ORM
-        $blogs = Blog::all();
-        return $blogs;
+        // $blogs = Blog::all();
+        // return $blogs;
+
+        // Eloquent ORM 2nd Method
+        // $blogs = Blog::get();
+        // return $blogs;
+
+        // Get only one Column/Table Eloquent ORM
+        // $blogs = Blog::get('blog_name');
+        // return $blogs;
+
     }
 
     /**
@@ -71,7 +90,7 @@ class BlogController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $requestQuery Builder
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
@@ -88,8 +107,33 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(Blog $blog, $id, $request)
     {
-        return Product::destroy($id);
+        // Eloquent ORM 1st Method using destroy
+        // return Blog::destroy($id);
+
+        // Eloquent ORM 2nd Method using delete
+        // $blog = Blog::findOrFail($id);
+        // $blog->delete();
+
+        // Query Builder using 1st Method delete
+        // $blogs = DB::table('blogs')->delete($id);
+        // return $blogs;
+
+
+        // Delete multiple items using comma
+        // try {
+        //     $ids = explode(",", $id);
+        //     //$ids is a Array with the primary keys
+        //     Blog::destroy($ids);
+        // }
+        // catch(Exception $e) {
+        //     return $e->getMessage();
+        // }
+
+
+        // $ids = $request->ids;
+        // DB::table("blogs")->whereIn('id',explode(",",$ids))->delete();
+        // return response()->json(['success'=>"Blogs Deleted successfully."]);
     }
 }

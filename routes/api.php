@@ -52,20 +52,22 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     // Index/get all user Details
     Route::delete('/userDetailDelete/{id}', [UserDetailController::class, 'destroy']);
 
+    Route::prefix('blog')->group(function () {
+        Route::post('/create', [BlogController::class, 'store']);
+        // Update/Edit user Details
+        Route::put('/update/{id}', [BlogController::class, 'update']);
+        // Index/get all user Details
+        Route::get('/index', [BlogController::class, 'index']);
+        // Index/get all user Details
+        Route::get('/show/{id}', [BlogController::class, 'show']);
+        // Index/get all user Details
+        Route::delete('/delete/{id}', [BlogController::class, 'destroy']);
+    });
+    
+
 
 });
 
-Route::prefix('blog')->group(function () {
-    Route::post('/create', [BlogController::class, 'store']);
-    // Update/Edit user Details
-    Route::put('/update/{id}', [BlogController::class, 'update']);
-    // Index/get all user Details
-    Route::get('/index', [BlogController::class, 'index']);
-    // Index/get all user Details
-    Route::get('/show/{id}', [BlogController::class, 'show']);
-    // Index/get all user Details
-    Route::delete('/delete/{id}', [BlogController::class, 'destroy']);
-});
 
 
 Route::get('/index', [UserController::class, 'index']);

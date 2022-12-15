@@ -21,6 +21,7 @@ class BlogController extends Controller
         // Query Builder
         $blogs = DB::table('blogs')->get();
         return $blogs;
+        
 
         // Get only one Table/Column Query Builder
         // $blogs = DB::table('blogs')->get('blog_name');
@@ -62,7 +63,19 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        return Blog::create($request->all());
+        // return Blog::create($request->all());
+
+        // $blogs = DB::table('blogs')->create();
+        // return $blogs;
+
+        $data = [
+            'blog_name' => $request->blog_name,
+            'blog_description' => $request->blog_description,
+            'author' => $request->author,
+            "user_detail_id" => auth()->user()->id
+        ];
+        $user = Blog::create($data);
+        return $user;
     }
 
     /**

@@ -16,4 +16,9 @@ class Blog extends Model
         'blog_description',
         'author',
     ];
+
+    public function userDetail(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_detail_id');
+    }
 }

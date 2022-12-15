@@ -56,4 +56,9 @@ class UserDetail extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function blog()
+    {
+        return $this->hasMany(Blog::class, 'user_detail_id', 'id');
+    }
 }

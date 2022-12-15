@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("user_detail_id");
+            $table->foreign("user_detail_id")->references("id")->on("user_details")->onDelete("cascade");
             $table->string('blog_name');
             $table->string('blog_description');
             $table->string('author');

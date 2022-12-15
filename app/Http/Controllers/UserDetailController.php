@@ -39,11 +39,19 @@ class UserDetailController extends Controller
         // return $user = DB::select('select about, facebook from user_details');
         
         // TODO: 6th Method get specific data
-        return $user = UserDetail::select('id', 'user_id', 'about', 'whatsapp')->get();
+        // return $user = UserDetail::select('id', 'user_id', 'about', 'whatsapp')->get();
         
         // ~ 6th Method get specific data
         // return $user = UserDetail::all('id', 'user_id', 'about', 'whatsapp', 'twitter', 'facebook');
-        
+
+
+        // Get all user details of Auth user
+        // $user = UserDetail::whereUserId(auth()->user()->id)->get();
+        // return $user;
+
+        $user = User::whereUserId(userDetails()->id)->get();
+        return $user;
+
     }
 
     /**

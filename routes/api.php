@@ -41,6 +41,10 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/password/change', [AuthController::class, 'changePassword'])->name('change.password');
     // Logout Route
     Route::post('/user/logout', [UserController::class, 'logout']);
+    // Index/get all user
+    Route::get('/index', [UserController::class, 'index']);
+    // get all user
+    Route::get('/show/{id}', [UserController::class, 'show']);
     // Create/Store user Details
     Route::post('/create', [UserDetailController::class, 'store']);
     // Update/Edit user Details
@@ -67,10 +71,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 
 });
-
-
-
-Route::get('/index', [UserController::class, 'index']);
 
 
 

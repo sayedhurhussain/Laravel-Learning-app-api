@@ -25,7 +25,7 @@ class UserDetailController extends Controller
     public function index()
     {
         // ^ 1st Method to index / get all data
-        // return UserDetail::all();
+        return UserDetail::all();
 
         // ! 2nd Method to index / get all data
         // $userDetails = UserDetail::all();
@@ -49,8 +49,8 @@ class UserDetailController extends Controller
         // $user = UserDetail::whereUserId(auth()->user()->id)->get();
         // return $user;
 
-        $user = User::whereUserId(userDetails()->id)->get();
-        return $user;
+        // $user = User::whereUserId(userDetails()->id)->get();
+        // return $user;
 
     }
 
@@ -187,7 +187,33 @@ class UserDetailController extends Controller
      */
     public function show($id)
     {
-        return UserDetail::findOrFail($id);
+        // simple get
+        // return UserDetail::findOrFail($id);
+
+        // using relation
+        // return UserDetail::findOrFail($id)->user;
+
+        // user not found condition using if else
+        // In function use ($id = null)
+        // if($id){
+        //     $getUser = UserDetail::where('id',$id)->first();
+        //     $count = UserDetail::where('id',$id)->count();
+        //   if($count>0){
+        //     return response()->json($getUser, 302);
+        //    } else {
+        //      return response()->json(['error' => "No such record found"]);
+        //    }    
+        // }
+
+        // user not found condition using exception
+        try {
+            $showUser = UserDetail::findOrFail($id);
+            return response()->json($showUser);
+           } catch (Exception $e) {
+               return response()->error(['error' => $e->getMessage()], 500);
+           }
+
+
     }
 
 

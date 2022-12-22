@@ -19,6 +19,8 @@ class Blog extends Model
 
     public function userDetail(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_detail_id');
+        return $this->belongsTo(UserDetail::class, 'user_detail_id');
     }
+    
+    
 }

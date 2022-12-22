@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use DB;
+use App\Models\User;
+use App\Models\UserDetail;
 use Illuminate\Database\QueryException;
 
 class BlogController extends Controller
@@ -19,8 +21,8 @@ class BlogController extends Controller
 
         // Laravel Eloquent Vs DB Query Builder
         // Query Builder
-        $blogs = DB::table('blogs')->get();
-        return $blogs;
+        // $blogs = DB::table('blogs')->get();
+        // return $blogs;
         
 
         // Get only one Table/Column Query Builder
@@ -42,6 +44,13 @@ class BlogController extends Controller
         // Get only one Column/Table Eloquent ORM
         // $blogs = Blog::get('blog_name');
         // return $blogs;
+
+
+        $comment = UserDetail::find(1);
+        $getNew = $comment->blog;
+
+        // $phone = UserDetail::find(1)->blog;
+        dd($getNew);
 
     }
 
@@ -69,13 +78,29 @@ class BlogController extends Controller
         // return $blogs;
 
         $data = [
+            // 'user_detail_id' => $request->user()->user_id,
             'blog_name' => $request->blog_name,
             'blog_description' => $request->blog_description,
             'author' => $request->author,
-            "user_detail_id" => auth()->user()->id
+            // 'user_detail_id' => $request->userDetail->user_detail_id ?? auth()->user()->id,
+            'user_detail_id' => auth()->user()->userDetail->id,
+
+            // 'user_detail_id' => auth()->userDetail->id,
+            // auth()->user()->id
+        // return User::find($id)->userDetail->about;
+
+        // "user_id" => auth()->user()->id
+
+           
+
+            // "user_id" => auth()->user()->id
+
         ];
+        dd($data);
         $user = Blog::create($data);
         return $user;
+
+
     }
 
     /**

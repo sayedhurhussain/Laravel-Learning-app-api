@@ -52,13 +52,14 @@ class UserDetail extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function user(): BelongsTo
+    public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'id');
     }
 
     public function blog()
     {
         return $this->hasMany(Blog::class, 'user_detail_id', 'id');
     }
+    
 }

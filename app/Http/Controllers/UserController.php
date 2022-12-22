@@ -23,6 +23,27 @@ class UserController extends Controller
         return User::all();
     }
 
+
+    /**
+    | --------------------------------------------------------------------------
+    | Display user by ID Controller
+    | --------------------------------------------------------------------------
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        // return User::findOrFail($id);
+
+        // get using relationship
+        return User::find($id)->userDetail;
+
+        // Get all user detail using id
+        // return User::find($id)->detail->all();
+    }
+
     /**
     | --------------------------------------------------------------------------
     | Register Controller

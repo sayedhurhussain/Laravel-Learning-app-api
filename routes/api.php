@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\UserDetailController;
 
 /*
@@ -71,7 +72,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 
 });
-
+Route::post('/address', [AddressController::class, 'store']);
+// Route::post('/username', [AddressController::class, 'userStore']);
 
 
 // Route::post('/register', function(){  

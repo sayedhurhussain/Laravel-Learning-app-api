@@ -77,13 +77,13 @@ class BlogController extends Controller
         // $blogs = DB::table('blogs')->create();
         // return $blogs;
 
-        $data = [
+        // $data = [
             // 'user_detail_id' => $request->user()->user_id,
-            'blog_name' => $request->blog_name,
-            'blog_description' => $request->blog_description,
-            'author' => $request->author,
+            // 'blog_name' => $request->blog_name,
+            // 'blog_description' => $request->blog_description,
+            // 'author' => $request->author,
             // 'user_detail_id' => $request->userDetail->user_detail_id ?? auth()->user()->id,
-            'user_detail_id' => auth()->user()->userDetail->id,
+            // 'user_detail_id' => auth()->user()->$request->userDetail->id,
 
             // 'user_detail_id' => auth()->userDetail->id,
             // auth()->user()->id
@@ -91,15 +91,27 @@ class BlogController extends Controller
 
         // "user_id" => auth()->user()->id
 
+        $blog = UserDetail::find($request->id);
+        dd($blog);
+
            
 
             // "user_id" => auth()->user()->id
 
-        ];
-        dd($data);
-        $user = Blog::create($data);
-        return $user;
+        // ];
+        // dd($data);
+        // $user = Blog::create($data);
+        // return $user;
 
+    //     $detail = new blog();
+    //     $detail->blog_name = $request->input("blog_name");
+    //     $detail->blog_description = $request->input("blog_description");
+    //     $detail->author = $request->input("author");
+    //     $detail->save();
+      
+    //    $location = new location();
+    //    $location->detail_id = $detail->id;
+    //    $location->save();
 
     }
 
